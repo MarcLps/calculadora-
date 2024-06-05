@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Linha para Amigurumi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: calc(100% - 20px);
+            margin-bottom: 10px;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 10px; /* Adicionando margem abaixo do botão */
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #resultado {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="openFormulaPage()">Fórmula</button>
+    <div class="container">
+        <h2>Calculadora de Linha para Amigurumi</h2>
+        <label for="peso">Peso do boneco (gramas):</label>
+        <input type="text" id="peso" placeholder="Ex: 14" required>
+
+        <label for="precoOlhos">Preço dos olhos (unidade):</label>
+        <input type="text" id="precoOlhos" placeholder="Ex: 0.50" required>
+
+        <label for="precoFibra">Peso da fibra acrílica (gramas):</label>
+        <input type="text" id="pesoFibra" placeholder="Ex: 50" required>
+
+        <button onclick="calcular()">Calcular</button>
+        <div id="resultado"></div>
+    </div>
+
+    <script>
+        function calcular() {
+            var pesoBoneco = parseFloat(document.getElementById("peso").value);
+            var precoOlhos = parseFloat(document.getElementById("precoOlhos").value);
+            var pesoFibra = parseFloat(document.getElementById("pesoFibra").value);
+
+            // Calcula o custo total da linha
+            var precoLinha = pesoBoneco * 0.15; // 15 centavos por grama
+
+            // Calcula o custo total dos olhos (multiplicado por 2)
+            var precoOlhosTotal = precoOlhos * 2;
+
+            // Calcula o custo total da fibra acrílica
+            var precoFibraTotal = pesoFibra * 0.16; // 16 centavos por grama
+
+            // Calcula o peso total do boneco
+            var pesoTotal = pesoBoneco + pesoFibra;
+
+            // Calcula o custo total
+            var custoTotal = precoLinha + precoOlhosTotal + precoFibraTotal;
+
+            // Adiciona margem de lucro de 20%
+            var margemLucro = custoTotal * 0.20;
+
+            // Calcula o preço de venda
+            var precoVenda = custoTotal + margemLucro;
+
+            // Exibe o resultado na tela
+            document.getElementById("resultado").innerHTML = "Custo total: R$ " + custoTotal.toFixed(2).replace('.', ',') + "<br>" +
+                                                                 "Preço de venda: R$ " + precoVenda.toFixed(2).replace('.', ',') + "<br>" +
+                                                                 "Peso total do boneco: " + pesoTotal + " gramas";
+        }
+
+        function openFormulaPage() {
+            window.open("formula.html", "_blank");
+        }
+    </script>
+</body>
+</html>
